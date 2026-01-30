@@ -2,19 +2,148 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <title>Portfolio en maintenance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Maintenance</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #00c6ff);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.45);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .time {
+            flex: 1;
+        }
+
+        .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00e5ff;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            color: #bbbbbb;
+        }
+
+        .name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            color: #00e5ff;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>🚧 En cours de création</h1>
-        <p>Mon portfolio se refait une beauté. Je reviens très vite !</p>
-        <div class="loader"></div>
-        <div class="links">
-            <a href="https://github.com" target="_blank">GitHub</a>
-            <a href="mailto:ton@email.com">Me contacter</a>
+        <div class="icon">🚀</div>
+        <h1>Portfolio en maintenance</h1>
+        <p>
+            Je travaille actuellement sur mon portfolio.<br>
+            Lancement prévu dans :
+        </p>
+
+        <div class="countdown">
+            <div class="time">
+                <div class="number" id="days">00</div>
+                <div class="label">Jours</div>
+            </div>
+            <div class="time">
+                <div class="number" id="hours">00</div>
+                <div class="label">Heures</div>
+            </div>
+            <div class="time">
+                <div class="number" id="minutes">00</div>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="time">
+                <div class="number" id="seconds">00</div>
+                <div class="label">Secondes</div>
+            </div>
         </div>
+
+        <div class="name">Carlos Sewa</div>
     </div>
+
+    <script>
+        // 🔴 MODIFIE LA DATE DE LANCEMENT ICI
+        const launchDate = new Date("2026-03-01T00:00:00").getTime();
+
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.querySelector(".countdown").innerHTML = "🚀 Le site est en ligne !";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }, 1000);
+    </script>
+
 </body>
 </html>
